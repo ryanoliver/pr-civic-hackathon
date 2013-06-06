@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @business = Business.where("userId = #{@user}")
+    @business = Business.find(:all, :conditions => { :userId => @user })
   end
 
   def new 

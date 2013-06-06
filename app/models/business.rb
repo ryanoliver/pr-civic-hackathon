@@ -8,6 +8,7 @@
 #  Description :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  userId      :string(255)
 #
 
 class Business < ActiveRecord::Base

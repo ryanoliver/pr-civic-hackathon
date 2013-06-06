@@ -1,22 +1,31 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-      
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<div class='container'>
 
-      <%=f.label :email %>
-      <%= f.text_field :email %>
+  <div class='row-fluid'>
 
-      <%=f.label :password %>
-      <%= f.password_field :password %>
+    <div class='span12 login-singup-middle' >
 
-      <%=f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+      <h1>Sign up</h1>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-    <% end %>
+        <%= form_for(@user) do |f| %>
+
+          <div style='padding:40px 140px 0;'>
+          
+            <%= f.text_field :name,  :placeholder => "Name" %>
+
+            <%= f.text_field :email,  :placeholder => "Email" %>
+
+            <%= f.password_field :password,  :placeholder => "Password" %>
+
+            <%= f.password_field :password_confirmation,  :placeholder => "Password" %>
+
+            <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+
+          </div>
+
+        <% end %>
+
+    </div>
+
   </div>
+
 </div>

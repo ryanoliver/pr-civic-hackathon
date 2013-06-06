@@ -4,7 +4,13 @@
 
     <div class='span12 content'>
 
-      <%= link_to addBusiness_path, class: 'grey-btn btn-stylus' do %><i class='icon-shop'></i>Add Business<% end %>
+      <%= link_to addBusiness_path, class: 'grey-btn btn-stylus business-all' do %><i class='icon-shop'></i>Add Business<% end %>
+
+      <% @business.each do |business| %>
+        <tr>
+          <td><%= business.name %></td>
+        </tr>
+      <% end %>
 
     </div>
 

@@ -24,7 +24,7 @@
   font-size: 30px;
 }
 
-input[type="password"],  input[type="email"], input[type="text"]{
+input[type="password"],  input[type="email"], input[type="text"], textarea {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -100,5 +100,10 @@ input[type="password"],  input[type="email"], input[type="text"]{
 
 .grey-btn i {
   padding-right: 20px;
+}
+
+textarea {
+  resize: none;
+  height:100px;
 }
 

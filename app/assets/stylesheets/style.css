@@ -73,10 +73,32 @@ input[type="password"],  input[type="email"], input[type="text"]{
 }
 
 .grey-btn {
-  background: #fff;
-  border: 1px solid #ddd;
+  background-color: #ddd;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eeeeee), color-stop(100%, #dddddd));
+  background: -webkit-linear-gradient(top, #eeeeee,#dddddd);
+  background: -moz-linear-gradient(top, #eeeeee,#dddddd);
+  background: -o-linear-gradient(top, #eeeeee,#dddddd);
+  -pie-background: linear-gradient(top, #eeeeee,#dddddd);
+  background: linear-gradient(top, #eeeeee,#dddddd);
+  background-repeat: repeat-x;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.125) inset,0 1px 1px rgba(0,0,0,0.125);
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.125) inset,0 1px 1px rgba(0,0,0,0.125);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.125) inset,0 1px 1px rgba(0,0,0,0.125);
+  border: 1px solid #bbb;
   display: block;
   padding: 10px;
+  line-height: 17px;
   -webkit-font-smoothing: subpixel-antialiased;
+  color:black;
+  text-shadow: 0 0 4px rgba(255,255,255,0.4);
+}
+
+.grey-btn:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.grey-btn i {
+  padding-right: 20px;
 }
 

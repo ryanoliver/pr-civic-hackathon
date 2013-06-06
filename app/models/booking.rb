@@ -15,4 +15,9 @@
 
 class Booking < ActiveRecord::Base
   attr_accessible :bizId, :day, :service, :slot, :time, :userId
+
+  belongs_to :business
+
+  validates :bizId, :userId, :slot, :day, :time, presence: true
+
 end

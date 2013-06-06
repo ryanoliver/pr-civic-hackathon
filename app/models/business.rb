@@ -12,4 +12,5 @@
 
 class Business < ActiveRecord::Base
   attr_accessible :Description, :Name, :Phone
+   has_many :bookings
 end

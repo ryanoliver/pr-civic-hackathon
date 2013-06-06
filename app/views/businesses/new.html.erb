@@ -1,21 +1,29 @@
-<h1>Add Business</h1>
+<div class='container'>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@business) do |f| %>
+  <div class='row-fluid'>
 
-      <%= f.label :Name %>
-      <%= f.text_field :Name %>
+    <div class='span12 content' >
 
-      <%= f.label :Phone %>
-      <%= f.text_field :Phone %>
+      <h1>Add Business</h1>
 
-      <%= f.label :Description %>
-      <%= f.text_field :Description %>
+        <%= form_for(@business) do |f| %>
 
+          <div style='padding:40px 140px 0;'>
+          
+            <%= f.text_field :Name,  :placeholder => "Name" %>
 
-      <%= f.submit "Click to Add", class: "btn btn-large btn-primary" %>
-    <% end %>
+            <%= f.text_field :Phone,  :placeholder => "Phone" %>
+
+            <%= f.password_field :Description,  :placeholder => "Description" %>
+
+            <%= f.submit "Add Business", class: "blue-btn btn-stylus", style: 'padding:10px 115px' %>
+
+          </div>
+
+        <% end %>
+
+    </div>
 
   </div>
+
 </div>

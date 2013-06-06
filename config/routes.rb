@@ -1,6 +1,14 @@
 CivicHack::Application.routes.draw do
   get "home/index"
 
+  root :to => 'home#index'
+
+  match '/signup' => 'users#new'
+  #Add sessions controller
+  #match '/signin' => 'sessions#new'
+  #match '/signout' => 'sessions#destroy
+  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -50,7 +58,7 @@ CivicHack::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  
 
   # See how all your routes lay out with "rake routes"
 

@@ -14,7 +14,7 @@
 
             <%= f.text_field :Phone,  :placeholder => "Phone" %>
 
-            <%= f.password_field :Description,  :placeholder => "Description" %>
+            <%= f.text_area :Description,  :placeholder => "Description",  maxlength: '120' %>
 
             <%= f.submit "Add Business", class: "blue-btn btn-stylus", style: 'padding:10px 115px' %>
 

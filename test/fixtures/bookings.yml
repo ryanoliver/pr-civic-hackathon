@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bizId: 1
+  userId: 1
+  slot: 1
+  service: MyString
+  day: MyString
+  time: MyString
+
+two:
+  bizId: 1
+  userId: 1
+  slot: 1
+  service: MyString
+  day: MyString
+  time: MyString

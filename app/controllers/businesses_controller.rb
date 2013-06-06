@@ -8,9 +8,11 @@ class BusinessesController < ApplicationController
   end
 
   def create
+    @user = User.find_by_remember_token(cookies[:remember_token])
     @business = Business.new(params[:business])
     if @business.save
       flash[:success] = "Business Added"
+      redirect_to @user
     else
       render 'new'
     end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @business = Business.find_by_userId(params[:id])
+    @business = Business.where("userId = #{@user}")
   end
 
   def new 

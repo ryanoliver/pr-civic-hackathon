@@ -1,6 +1,9 @@
 CivicHack::Application.routes.draw do
   get "home/index"
 
+  resources :users do
+  end
+
   root :to => 'home#index'
 
   match '/signup' => 'users#new'

@@ -1,18 +1,28 @@
-<h1>Sign in</h1>
+<div class='container'>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(:session, url: sessions_path) do |f| %>
+  <div class='row-fluid'>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+    <div class='span12 login-singup-middle'>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+        <h1>Login</h1>
 
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-    <% end %>
+        <div style='padding:40px 140px 0;'>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+          <%= form_for(:session, url: sessions_path) do |f| %>
+
+            <%= f.text_field :email, :placeholder => 'Email' %>
+
+            <%= f.password_field :password, :placeholder => 'Password' %>
+
+            <%= f.submit "Sign in", class: "blue-btn btn-stylus", style: 'padding:10px 139px' %>
+          <% end %>
+
+        <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+
+      </div>
+
+    </div>
+
   </div>
+
 </div>

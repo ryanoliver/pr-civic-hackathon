@@ -47,3 +47,28 @@ input[type="password"],  input[type="email"], input[type="text"]{
   margin-bottom: 20px;
 }
 
+.blue-btn {
+  background: -webkit-gradient(linear, center top, center bottom, from(deg), color-stop(0, rgba(0,0,0,0.15)), to(rgba(0,0,0,0)));
+  background: -webkit-linear-gradient(90deg, rgba(0,0,0,0.15) 0, rgba(0,0,0,0) 100%);
+  background-color: #5b93fc;
+  border: 1px solid #4177bb;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(255,255,255,.3) inset;
+  box-shadow: 0 1px 1px 0 rgba(255,255,255,.3) inset;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.btn-stylus {
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0,0,0,0.4);
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 13px;
+  letter-spacing: 1px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px 20px;
+}
+

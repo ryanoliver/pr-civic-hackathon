@@ -1,0 +1,21 @@
+<h1>Add Business</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@business) do |f| %>
+
+      <%= f.label :Name %>
+      <%= f.text_field :Name %>
+
+      <%= f.label :Phone %>
+      <%= f.text_field :Phone %>
+
+      <%= f.label :Description %>
+      <%= f.text_field :Description %>
+
+
+      <%= f.submit "Click to Add", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

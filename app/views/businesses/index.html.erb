@@ -1,0 +1,10 @@
+<h1>Businesses</h1>
+
+<ul class="users">
+  <% @business.each do |business|%>
+    <div>
+    <%= link_to "#{business.Name}", business_path(business.id) %>
+    </div>
+    <%end%>
+</ul>
+

@@ -2,15 +2,18 @@ CivicHack::Application.routes.draw do
   get "home/index"
 
   resources :users
-    resources :businesses
+  resources :businesses
   resources :sessions,   only: [:new, :create, :destroy]
-  root :to => 'home#index'
+  root :to => 'businesses#index'
 
   match '/signup' => 'users#new'
   #Add sessions controller
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
   match '/addBusiness' => 'businesses#new'
+
+  #Add a view to test the calendar
+  match '/calendar' => 'businesses#showcal'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

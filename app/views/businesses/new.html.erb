@@ -1,29 +1,31 @@
+<%= javascript_include_tag "fullcalendar" %>
+<%= stylesheet_link_tag "fullcalendar" %>
+
 <div class='container'>
 
   <div class='row-fluid'>
 
     <div class='span12 content' >
-
+      
       <h1>Add Business</h1>
-
-        <%= form_for(@business) do |f| %>
-
-          <div style='padding:40px 140px 0;'>
+      
+      <%= form_for(@business) do |f| %>
+	
+        <div style='padding:40px 140px 0;'>
           
-            <%= f.text_field :Name,  :placeholder => "Name" %>
-
-            <%= f.text_field :Phone,  :placeholder => "Phone" %>
-
-            <%= f.text_area :Description,  :placeholder => "Description",  maxlength: '120' %>
-
-            <%= f.submit "Add Business", class: "blue-btn btn-stylus", style: 'padding:10px 115px' %>
-
-          </div>
-
-        <% end %>
-
+          <%= f.text_field :Name,  :placeholder => "Name" %>
+	  
+          <%= f.text_field :Phone,  :placeholder => "Phone" %>
+	  
+          <%= f.text_area :Description,  :placeholder => "Description",  maxlength: '120' %>
+	  
+          <%= f.submit "Add Business", class: "blue-btn btn-stylus", style: 'padding:10px 115px' %>
+        </div>
+	
+      <% end %>
+      
     </div>
-
+    
   </div>
-
+  
 </div>

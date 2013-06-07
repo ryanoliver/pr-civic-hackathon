@@ -3,6 +3,10 @@ class BusinessesController < ApplicationController
     @business = Business.find(params[:id])
   end
 
+  def showcal
+    #@business = Business.find(params[:id])
+  end
+
   def new
     @business = Business.new
   end

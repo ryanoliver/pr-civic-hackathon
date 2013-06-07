@@ -1,0 +1,15 @@
+<%= javascript_include_tag "fullcalendar" %>
+<%= stylesheet_link_tag "fullcalendar" %>
+
+<div id='calendar'></div>
+
+<script>
+  $(document).ready(function() {
+
+      $('#calendar').fullCalendar({
+         defaultView: 'basicWeek'
+
+    })
+
+});
+</script>

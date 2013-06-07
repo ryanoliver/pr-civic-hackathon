@@ -19,6 +19,10 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def index
+    @business = Business.all
+  end
+
   def destroy
     Business.find(params[:id]).destroy
     flash[:success] = "Business destroyed"

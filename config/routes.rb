@@ -4,7 +4,7 @@ CivicHack::Application.routes.draw do
   resources :users
     resources :businesses
   resources :sessions,   only: [:new, :create, :destroy]
-  root :to => 'home#index'
+  root :to => 'businesses#index'
 
   match '/signup' => 'users#new'
   #Add sessions controller

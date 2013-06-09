@@ -44,6 +44,9 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fullcalendar-rails (1.6.1.0)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -114,6 +117,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
   fullcalendar-rails
+  gon
   jquery-rails
   jquery-ui-rails
   json

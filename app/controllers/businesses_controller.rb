@@ -5,6 +5,25 @@ class BusinessesController < ApplicationController
 
   def showcal
     #@business = Business.find(params[:id])
+    @events = [
+               {
+                title: 'event1',
+                start: '2013-06-04'
+               },
+               {
+                title: 'event2',
+                start: '2013-06-05',
+                end: '2013-06-07'
+               },
+               {
+                title: 'event3',
+                start: '2013-06-08 12:30:00',
+                end: '2013-06-08 13:30:00',
+                allDay: false
+               }
+              ]
+
+    gon.events = @events
   end
 
   def new

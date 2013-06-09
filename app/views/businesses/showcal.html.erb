@@ -1,15 +1,16 @@
 <%= javascript_include_tag "fullcalendar" %>
 <%= stylesheet_link_tag "fullcalendar" %>
-
+<%= include_gon %>
 <div id='calendar'></div>
 
 <script>
+
   $(document).ready(function() {
 
-      $('#calendar').fullCalendar({
-         defaultView: 'basicWeek'
-
-    })
+     $('#calendar').fullCalendar({
+    events: gon.events,
+    defaultView: 'agendaWeek'
+});
 
 });
 </script>

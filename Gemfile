@@ -8,6 +8,8 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 
 gem 'json'
+#Used gon to send data to javascript from controller
+gem 'gon'
 
 # Gems used only for assets and not required
 # in production environments by default.

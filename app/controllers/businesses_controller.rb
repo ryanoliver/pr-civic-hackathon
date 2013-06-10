@@ -44,7 +44,8 @@ class BusinessesController < ApplicationController
   end
 
   def index
-    @business = Business.all
+    @user = User.find_by_remember_token(cookies[:remember_token])
+    @business = Business.find(:all, :conditions => { :userId => @user })
   end
 
   def destroy

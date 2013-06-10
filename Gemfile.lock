@@ -50,6 +50,8 @@ GEM
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
+    jquery-qtip2-rails (0.5.0)
+      railties (>= 3.1.0)
     jquery-rails (3.0.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -118,6 +120,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   fullcalendar-rails
   gon
+  jquery-qtip2-rails
   jquery-rails
   jquery-ui-rails
   json

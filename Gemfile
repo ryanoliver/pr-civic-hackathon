@@ -11,6 +11,8 @@ gem 'json'
 #Used gon to send data to javascript from controller
 gem 'gon'
 
+gem 'jquery-qtip2-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

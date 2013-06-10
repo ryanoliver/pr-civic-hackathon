@@ -8,17 +8,18 @@ class BusinessesController < ApplicationController
     @events = [
                {
                 title: 'event1',
-                start: '2013-06-04'
+                start: '2013-06-09'
                },
                {
                 title: 'event2',
-                start: '2013-06-05',
-                end: '2013-06-07'
+                start: '2013-06-10',
+                end: '2013-06-12',
+                editable: true
                },
                {
                 title: 'event3',
-                start: '2013-06-08 12:30:00',
-                end: '2013-06-08 13:30:00',
+                start: '2013-06-13 12:30:00',
+                end: '2013-06-13 13:30:00',
                 allDay: false
                }
               ]

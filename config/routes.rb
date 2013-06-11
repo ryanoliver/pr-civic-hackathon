@@ -1,16 +1,17 @@
 CivicHack::Application.routes.draw do
+  resources :businesses
+
   get "home/index"
 
   resources :users
-  resources :businesses
   resources :sessions,   only: [:new, :create, :destroy]
-  root :to => 'businesses#index'
+
+  root :to => 'home#index'
 
   match '/signup' => 'users#new'
   #Add sessions controller
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
-  match '/addBusiness' => 'businesses#new'
 
   #Add a view to test the calendar
   match '/calendar' => 'businesses#showcal'

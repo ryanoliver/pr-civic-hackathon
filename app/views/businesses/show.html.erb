@@ -1,23 +1,20 @@
-<div class='container'>
+<p id="notice"><%= notice %></p>
 
-  <div class='row-fluid'>
+<p>
+  <b>Name:</b>
+  <%= @business.Name %>
+</p>
 
-    <div class='span12 content'>
-      <div>
-      <%= @business.Name %>
-      </div>
-      <div>
-	<%= @business.Phone %>
-      </div>
-      <div>
-      <%= @business.Description %>
-      </div>
-      <div>
-	Book it!
-      </div>
-      
-    </div>
-    
-  </div>
+<p>
+  <b>Phone:</b>
+  <%= @business.Phone %>
+</p>
 
-</div>
+<p>
+  <b>Description:</b>
+  <%= @business.Description %>
+</p>
+
+
+<%= link_to 'Edit', edit_business_path(@business) %> |
+<%= link_to 'Back', businesses_path %>

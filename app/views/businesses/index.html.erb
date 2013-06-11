@@ -1,10 +1,27 @@
-<h1>Businesses</h1>
+<h1>Listing businesses</h1>
 
-<ul class="users">
-  <% @business.each do |business|%>
-    <div>
-    <%= link_to "#{business.Name}", business_path(business.id) %>
-    </div>
-    <%end%>
-</ul>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
+<% @businesses.each do |business| %>
+  <tr>
+    <td><%= business.Name %></td>
+    <td><%= business.Phone %></td>
+    <td><%= business.Description %></td>
+    <td><%= link_to 'Show', business %></td>
+    <td><%= link_to 'Edit', edit_business_path(business) %></td>
+    <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Business', new_business_path %>

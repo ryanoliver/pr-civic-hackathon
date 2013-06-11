@@ -11,8 +11,8 @@ class EventsController < ApplicationController
 
   def update
     event = Event.find(params[:id])
-    event.update_attributes!(:start => params[:start], :end => params[:end], :title => params[:title],
-                             :color => params[:color])
+    event.update_attributes!(:start => params[:start], :end => params[:end], 
+                             :title => params[:title],:color => params[:color])
     render :json => event
   end
 

@@ -3,30 +3,6 @@ class BusinessesController < ApplicationController
     @business = Business.find(params[:id])
   end
 
-  def showcal
-    #@business = Business.find(params[:id])
-    @events = [
-               {
-                title: 'event1',
-                start: '2013-06-09'
-               },
-               {
-                title: 'event2',
-                start: '2013-06-10',
-                end: '2013-06-12',
-                editable: true
-               },
-               {
-                title: 'event3',
-                start: '2013-06-13 12:30:00',
-                end: '2013-06-13 13:30:00',
-                allDay: false
-               }
-              ]
-
-    gon.events = @events
-  end
-
   def new
     @business = Business.new
   end

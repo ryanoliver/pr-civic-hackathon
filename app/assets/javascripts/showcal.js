@@ -22,7 +22,7 @@ $(function(){
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month,basicWeek,basicDay'
+                    right: 'month,agendaWeek,agendaDay'
                 },
 		defaultView: 'agendaWeek',
                 selectable: true,
@@ -32,14 +32,15 @@ $(function(){
                 select: this.select,
                 eventClick: this.eventClick,
                 eventDrop: this.eventDropOrResize,        
-                eventResize: this.eventDropOrResize
-            });
+                eventResize: this.eventDropOrResize,
+		allDayDefault: false
+	    });
         },
         addAll: function() {
             this.$el.fullCalendar('addEventSource', this.collection.toJSON());
         },
         addOne: function(event) {
-            this.$el.fullCalendar('renderEvent', event.toJSON());
+            this.$el.fullCalendar('renderEvent', event.toJSON(), true);
         },        
         select: function(startDate, endDate) {
             this.eventView.collection = this.collection;
@@ -89,7 +90,9 @@ $(function(){
         },        
         open: function() {
             this.$('#title').val(this.model.get('title'));
-            this.$('#color').val(this.model.get('color'));            
+            this.$('#color').val(this.model.get('color'));
+	    this.$('#start').val(this.model.get('start'));
+            this.$('#end').val(this.model.get('end'));
         },        
         save: function() {
             this.model.set({'title': this.$('#title').val(), 'color': this.$('#color').val()});

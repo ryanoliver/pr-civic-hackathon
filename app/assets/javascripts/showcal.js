@@ -24,6 +24,7 @@ $(function(){
                     center: 'title',
                     right: 'month,basicWeek,basicDay'
                 },
+		defaultView: 'agendaWeek',
                 selectable: true,
                 selectHelper: true,
                 editable: true,
@@ -61,7 +62,7 @@ $(function(){
             this.collection.get(fcEvent.id).save({start: fcEvent.start, end: fcEvent.end});            
         },
         destroy: function(event) {
-            this.el.fullCalendar('removeEvents', event.id);         
+            this.$el.fullCalendar('removeEvents', event.id);         
         }        
     });
 

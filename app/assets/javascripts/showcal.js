@@ -11,6 +11,7 @@ $(function(){
             _.bindAll(this);
 	    
             this.collection.bind('reset', this.addAll);
+	    this.collection.bind('add', this.addOne);
         },
         render: function() {
             this.$el.fullCalendar({
@@ -31,6 +32,9 @@ $(function(){
             eventView.collection = this.collection;
             eventView.model = new Event({start: startDate, end: endDate});
             eventView.render();
+	},
+	addOne: function(event) {
+            this.$el.fullCalendar('renderEvent', event.toJSON());
 	},
         addAll: function(){
             this.$el.fullCalendar('addEventSource', this.collection.toJSON());

@@ -3,9 +3,9 @@ $(function(){
 
     var Events = Backbone.Collection.extend({
         model: Event,
-        url: '/events/' + $('#bid').html()
+        url: '/events/'
     }); 
- 
+
     var EventsView = Backbone.View.extend({
         initialize: function(){
             _.bindAll(this); 
@@ -56,8 +56,7 @@ $(function(){
             var fcEvent = this.$el.fullCalendar('clientEvents', event.get('id'))[0];
             fcEvent.title = event.get('title');
             fcEvent.color = event.get('color');
-            this.$el.fullCalendar('updateEvent', fcEvent);           
-        },
+            this.$el.fullCalendar('updateEvent', fcEvent);                   },
         eventDropOrResize: function(fcEvent) {
             // Lookup the model that has the ID of the event and update its attributes
             this.collection.get(fcEvent.id).save({start: fcEvent.start, end: fcEvent.end});            
@@ -114,4 +113,5 @@ $(function(){
     var events = new Events();
     new EventsView({el: $("#calendar"), collection: events}).render();
     events.fetch();
+
 });

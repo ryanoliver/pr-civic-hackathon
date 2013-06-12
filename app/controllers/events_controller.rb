@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    render :json => Event.find(:all, :conditions => { :bisId => 2 })
+    render :json => Event.all
   end
 
   def create
@@ -21,5 +21,9 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.destroy    
     render :json => event
+  end
+  
+  def show
+    render  :json => Event.find(:all, :conditions => { :bisId => params[:id] })
   end
 end

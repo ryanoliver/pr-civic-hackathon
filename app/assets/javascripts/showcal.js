@@ -3,7 +3,7 @@ $(function(){
 
     var Events = Backbone.Collection.extend({
         model: Event,
-        url: '/events'
+        url: '/events/' + $('#bid').html()
     }); 
  
     var EventsView = Backbone.View.extend({

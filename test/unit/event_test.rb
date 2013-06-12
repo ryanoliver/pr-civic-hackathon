@@ -9,6 +9,7 @@
 #  end        :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  bisId      :integer
 #
 
 require 'test_helper'

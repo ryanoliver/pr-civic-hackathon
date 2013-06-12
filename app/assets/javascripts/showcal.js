@@ -44,7 +44,7 @@ $(function(){
         },        
         select: function(startDate, endDate) {
             this.eventView.collection = this.collection;
-            this.eventView.model = new Event({start: startDate, end: endDate});
+            this.eventView.model = new Event({start: startDate, end: endDate, bid: $('#bid').html() });
             this.eventView.render();            
         },
         eventClick: function(fcEvent) {

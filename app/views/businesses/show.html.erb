@@ -17,7 +17,7 @@
       </div>
       
     </div>
-    
   </div>
-<%=  render "events/showcal"%>
+  <%= render :partial => "/events/showcal", :locals => { :bid => @business.id }%>
+
 </div>

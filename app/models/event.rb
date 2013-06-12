@@ -9,8 +9,9 @@
 #  end        :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  bisId      :integer
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :color, :end, :start, :title
+  attr_accessible :color, :end, :start, :title, :bisId
 end

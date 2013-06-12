@@ -1,12 +1,13 @@
 class EventsController < ApplicationController
   def index
-    render :json => Event.all
+    render :json => Event.find(:all, :conditions => { :bisId => 2 })
   end
 
   def create
+    puts "The value is #{params[:bid]}"
     render :json => 
       Event.create!(:start => params[:start], :end => params[:end], :title => params[:title],
-                    :color => params[:color])
+                    :color => params[:color], :bisId => params[:bid])
   end
 
   def update

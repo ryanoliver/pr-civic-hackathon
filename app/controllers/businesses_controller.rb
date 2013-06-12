@@ -23,6 +23,7 @@ class BusinessesController < ApplicationController
 
   # GET /businesses/new
   # GET /businesses/new.json
+
   def new
     @business = Business.new
 

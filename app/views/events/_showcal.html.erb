@@ -1,0 +1,28 @@
+<%= javascript_include_tag "showcal", "fullcalendar" %>
+<%= stylesheet_link_tag "fullcalendar" %>
+<%= include_gon %>
+
+<body>
+  <div id='calendar'></div>
+  <div id='eventDialog' class='dialog ui-helper-hidden'>
+    <form>
+      <div>
+        <label>Title:</label>
+        <input id='title' class="field" type="text"></input>
+      </div>
+      <div>
+        <label>Color:</label>
+        <input id='color' class="field" type="text"></input>
+      </div>
+      <div>
+        <label>Start:</label>
+        <input id='start' class="field" type="text"></input>
+      </div>
+      <div>
+        <label>End:</label>
+        <input id='end' class="field" type="text"></input>
+      </div>
+    </form>
+    <div id='bid' class='ui-helper-hidden'><%=bid%></div>
+  </div>
+</body>

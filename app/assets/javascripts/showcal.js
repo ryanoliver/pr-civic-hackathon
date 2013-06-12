@@ -1,86 +1,117 @@
-$(document).ready(function() {
-    
-    
-    /* initialize the external events
-       -----------------------------------------------------------------*/
-    
-    var gid = 1; // event.id == 0 considered to be undefined (boo) 
-    var dragged = null;
-    $('#external-events div.external-event').each(function() {
-        var eventObject = {
-            title: $.trim($(this).text()), // use the element's text as the event title
-            id: gid ++
-        };
-        
-        // store the Event Object in the DOM element so we can get to it later
-        $(this).data('eventObject', eventObject);
-        
-        // make the event draggable using jQuery UI
-        $(this).draggable({
-            zIndex: 999,
-            revert: true,      // will cause the event to go back to its
-            revertDuration: 0  //  original position after the drag
-        });
-    });
-    
-    $('#external-events').droppable({
-        drop: function( event, ui ) {
-            if ( dragged && ui.helper && ui.helper[0] === dragged[0] ) {
-                var event = dragged[1];
-                //$('#calendar').fullCalendar('removeEvent',id );
-                calendar.fullCalendar('removeEvents',event.id);
-                var el = $( "<div class='external-event'>" ).appendTo( this ).text( event.title );
-                el.draggable({
-                    zIndex: 999,
-                    revert: true,      // will cause the event to go back to its
-                    revertDuration: 0  //  original position after the drag
-                });
-                el.data('eventObject', { title: event.title, id :event.id });
-            }
-        }
-    });
-    
-    
-    /* initialize the calendar
-       -----------------------------------------------------------------*/
-    
-    var calendar = $('#calendar').fullCalendar({
-        header: {
-            left: '',
-            center: 'title',
-            right: ''
+$(function(){
+    var Event = Backbone.Model.extend();
+
+    var Events = Backbone.Collection.extend({
+        model: Event,
+        url: '/events/'
+    }); 
+
+    var EventsView = Backbone.View.extend({
+        initialize: function(){
+            _.bindAll(this); 
+
+            this.collection.bind('reset', this.addAll);
+            this.collection.bind('add', this.addOne);
+            this.collection.bind('change', this.change);            
+            this.collection.bind('destroy', this.destroy);
+            
+            this.eventView = new EventView();            
         },
-        editable: true,
-        defaultView: 'agendaWeek',
-        columnFormat: { week: 'dddd' },
-        droppable: true, 
-        events: gon.events,
-        titleFormat: { week: 'yyyy'},
-        drop: function(date, allDay) { // this function is called when something is dropped
+        render: function() {
+            this.$el.fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+		defaultView: 'agendaWeek',
+                selectable: true,
+                selectHelper: true,
+                editable: true,
+                ignoreTimezone: false,                
+                select: this.select,
+                eventClick: this.eventClick,
+                eventDrop: this.eventDropOrResize,        
+                eventResize: this.eventDropOrResize,
+		allDayDefault: false
+	    });
+        },
+        addAll: function() {
+            this.$el.fullCalendar('addEventSource', this.collection.toJSON());
+        },
+        addOne: function(event) {
+            this.$el.fullCalendar('renderEvent', event.toJSON(), true);
+        },        
+        select: function(startDate, endDate) {
+            this.eventView.collection = this.collection;
+            this.eventView.model = new Event({start: startDate, end: endDate, bid: $('#bid').html() });
+            this.eventView.render();            
+        },
+        eventClick: function(fcEvent) {
+            this.eventView.model = this.collection.get(fcEvent.id);
+            this.eventView.render();
+        },
+        change: function(event) {
+            // Look up the underlying event in the calendar and update its details from the model
+            var fcEvent = this.$el.fullCalendar('clientEvents', event.get('id'))[0];
+            fcEvent.title = event.get('title');
+            fcEvent.color = event.get('color');
+            this.$el.fullCalendar('updateEvent', fcEvent);                   },
+        eventDropOrResize: function(fcEvent) {
+            // Lookup the model that has the ID of the event and update its attributes
+            this.collection.get(fcEvent.id).save({start: fcEvent.start, end: fcEvent.end});            
+        },
+        destroy: function(event) {
+            this.$el.fullCalendar('removeEvents', event.id);         
+        }        
+    });
+
+    var EventView = Backbone.View.extend({
+        el: $('#eventDialog'),
+        initialize: function() {
+            _.bindAll(this);           
+        },
+        render: function() {
+            var buttons = {'Ok': this.save};
+            if (!this.model.isNew()) {
+                _.extend(buttons, {'Delete': this.destroy});
+            }
+            _.extend(buttons, {'Cancel': this.close});            
             
-            // retrieve the dropped element's stored Event Object
-            var originalEventObject = $(this).data('eventObject');
+            this.$el.dialog({
+                modal: true,
+                title: (this.model.isNew() ? 'New' : 'Edit') + ' Event',
+                buttons: buttons,
+                open: this.open
+            });
+
+            return this;
+        },        
+        open: function() {
+            this.$('#title').val(this.model.get('title'));
+            this.$('#color').val(this.model.get('color'));
+	    this.$('#start').val(this.model.get('start'));
+            this.$('#end').val(this.model.get('end'));
+        },        
+        save: function() {
+            this.model.set({'title': this.$('#title').val(), 'color': this.$('#color').val()});
             
-            // we need to copy it, so that multiple events don't have a reference to the same object
-            var copiedEventObject = $.extend({}, originalEventObject);
-            
-            // assign it the date that was reported
-            copiedEventObject.start = date;
-            copiedEventObject.allDay = allDay;
-            
-            $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-            
-            // is the "remove after drop" checkbox checked?
-            if ($('#drop-remove').is(':checked')) {
-                // if so, remove the element from the "Draggable Events" list
-                $(this).remove();
+            if (this.model.isNew()) {
+                this.collection.create(this.model, {success: this.close, wait: true});
+            } else {
+                this.model.save({}, {success: this.close});
             }
         },
-        eventDragStart: function( event, jsEvent, ui, view ) { 
-            dragged = [ ui.helper[0], event ];
-        }
-        //  eventRender: function(event, element, view){
-        //   element.qtip({ content: "event3"});
-        // }
+        close: function() {
+            this.$el.dialog('close');
+        },
+        destroy: function() {
+            this.model.destroy({success: this.close});
+        }        
     });
+    
+    var events = new Events();
+    new EventsView({el: $("#calendar"), collection: events}).render();
+    events.fetch();
+
 });

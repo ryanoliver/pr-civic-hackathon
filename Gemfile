@@ -11,7 +11,8 @@ gem 'json'
 #Used gon to send data to javascript from controller
 gem 'gon'
 
-gem 'jquery-qtip2-rails'
+gem "underscore-rails", "~> 1.4.4"
+gem "backbonejs-rails", "~> 0.0.6"
 
 # Gems used only for assets and not required
 # in production environments by default.

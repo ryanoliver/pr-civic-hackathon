@@ -1,11 +1,23 @@
 $(function(){
-    var Event = Backbone.Model.extend();
-
+    var BID =  parseInt($('#bid').html());
+    
+    var Event = Backbone.Model.extend({
+	defaults:{
+            "bid": BID
+    	}
+    });
+ 
     var Events = Backbone.Collection.extend({
-        model: Event,
-        url: '/events/'
-    }); 
-
+	search: function( opts ){
+            var result = this.where( opts );
+            var resultCollection = new Events( result );
+	    
+            return resultCollection;
+	},
+	model: Event,
+	url : "/events/"
+    });
+	
     var EventsView = Backbone.View.extend({
         initialize: function(){
             _.bindAll(this); 
@@ -37,14 +49,16 @@ $(function(){
 	    });
         },
         addAll: function() {
-            this.$el.fullCalendar('addEventSource', this.collection.toJSON());
+	    //Only display events with the same bisID
+	    col = this.collection.search({bisId: BID});
+	    this.$el.fullCalendar('addEventSource', col.toJSON());
         },
         addOne: function(event) {
             this.$el.fullCalendar('renderEvent', event.toJSON(), true);
         },        
         select: function(startDate, endDate) {
             this.eventView.collection = this.collection;
-            this.eventView.model = new Event({start: startDate, end: endDate, bid: $('#bid').html() });
+            this.eventView.model = new Event({start: startDate, end: endDate });
             this.eventView.render();            
         },
         eventClick: function(fcEvent) {
@@ -112,6 +126,5 @@ $(function(){
     
     var events = new Events();
     new EventsView({el: $("#calendar"), collection: events}).render();
-    events.fetch();
-
+    events.fetch();    
 });

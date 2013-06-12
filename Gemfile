@@ -12,7 +12,7 @@ gem 'json'
 gem 'gon'
 
 gem "underscore-rails", "~> 1.4.4"
-gem "backbonejs-rails", "~> 0.0.6"
+gem "rails-backbone", "~> 0.9.10"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -15,4 +15,4 @@
 //= require jquery.ui.all
 //= require underscore
 //= require backbone
-= require_bootstrap
+//= require_bootstrap

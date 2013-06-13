@@ -17,8 +17,20 @@ Open slots are in green and booked slots are in red
 ![Alt text](http://oi44.tinypic.com/2ij16jk.jpg "Bookings")
 
 ### Group
-Receptionist was made by Carlos Feliciano Barba (Backend) and Ryan Oliver (Frontend).
+Receptionist was made by:  
+Carlos Feliciano Barba (Backend)  
+Info:
+```
+Student from Univeristy of Puerto Rico RP, Web Developer, Ruby Enthusiast
 
+Github: https://github.com/carloscheddar  
+Email: c.feliciano2009@gmail.com
+```
+Ryan Oliver (Frontend)  
+Info:
+```
+Github: https://github.com/r23712
+```
 ### Future Updates
 ```
 Add a nicer interface

@@ -46,7 +46,7 @@ CivicHack::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-   config.assets.precompile += %w( showcal.js )
+  config.assets.precompile += %w( showcal.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -69,9 +69,9 @@ CivicHack::Application.configure do
   # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  
+
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = 
+  config.action_mailer.smtp_settings =
   {
    :user_name => ENV["SENDGRID_USERNAME"],
    :password => ENV["SENDGRID_PASSWORD"],
@@ -80,7 +80,7 @@ CivicHack::Application.configure do
    :port => 587,
    :authentication => :plain,
    :enable_starttls_auto => true
-  }
+ }
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  def new 
+  def new
   end
 
   def create
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def destroy
     sign_out
     redirect_to root_url
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
   def current_user=(user)
     @current_user = user
   end
-  
+
   def current_user
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
   def current_user?(user)
     user == current_user
   end
-  
+
   def signed_in_user
     unless signed_in?
       store_location

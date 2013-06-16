@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, 
+  before_filter :signed_in_user,
                 only: [:index, :edit, :update, :destroy]
   before_filter :correct_user, only: [:edit, :update]
-  
+
   def show
     @user = User.find(params[:id])
     @business = Business.find(:all, :conditions => { :userId => @user })
   end
 
-  def new 
+  def new
     @user = User.new
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:sucess] = "User destroyed"
   end
-  
+
   private
 
   def correct_user
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def current_user=(user)
     @current_user = user
   end
-  
+
   def current_user
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   def current_user?(user)
     user == current_user
   end
-  
+
   def signed_in_user
     unless signed_in?
       store_location

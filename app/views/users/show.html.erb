@@ -5,7 +5,7 @@
     <div class='span12 content'>
 
       <%= link_to "Add Business or Service", businesses_path %>
-      
+
       <% @business.each do |business| %>
         <div>
           <%= link_to "#{business.Name}", business_path(business.id) %>

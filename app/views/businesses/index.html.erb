@@ -12,10 +12,10 @@
 
 <% @businesses.each do |business| %>
   <tr>
-    <td><%= business.Name %></td>
+    <td><%= link_to business.Name, business %></td></td>
     <td><%= business.Phone %></td>
     <td><%= business.Description %></td>
-    <td><%= link_to 'Show', business %></td>
+    <td>
     <td><%= link_to 'Edit', edit_business_path(business) %></td>
     <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

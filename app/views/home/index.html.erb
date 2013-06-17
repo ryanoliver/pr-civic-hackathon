@@ -1,2 +1,23 @@
-<h1>hello</h1>
+<% if signed_in? %>
+<div class="row">
+  <aside class="span4">
+  <h1>
+    <%= current_user.name %>
+  </h1>
+  <span>
+    <%= link_to "view my profile", current_user %>
+  </span>
+  </aside>
 
+</div>
+<% else %>
+<div class="center hero-unit">
+  <h1>Welcome to Receptionist</h1>
+
+  <h2>Sign up to create a business</h2>
+
+  <%= link_to "Sign up now!", signup_path,
+  class: "btn btn-large btn-primary" %>
+</div>
+
+<% end %>

@@ -42,7 +42,7 @@ class BusinessesController < ApplicationController
   # POST /businesses.json
   def create
     @business = Business.new(params[:business])
-    @business.userId = User.find_by_remember_token(cookies[:remember_token])
+    @business.userId = current_user.id
 
     respond_to do |format|
       if @business.save

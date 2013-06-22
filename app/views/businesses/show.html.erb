@@ -4,15 +4,15 @@
 <%= render partial: "showbis" %>
 
 <p>
-Edit your business calendar.
+  Edit your business calendar.
 </p>
 
 <%= link_to 'Edit', edit_business_path(@business) %>
 <%= link_to 'Back', businesses_path %>
 <%= link_to 'Destroy', @business, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= render partial: "/events/showcal", locals: { bid: @business.id }%>
 <% else %>
 
 <%= render partial: "showbis" %>
 
 <% end %>
+<%= render partial: "/events/showcal", locals: { bid: @business.id }%>

@@ -1,8 +1,7 @@
-<% if current_user.id ==  @business.userId%>
 <p id="notice"><%= notice %></p>
 
 <%= render partial: "showbis" %>
-
+<% if current_user.id ==  @business.userId%>
 <p>
   Edit your business calendar.
 </p>
@@ -10,9 +9,5 @@
 <%= link_to 'Edit', edit_business_path(@business) %>
 <%= link_to 'Back', businesses_path %>
 <%= link_to 'Destroy', @business, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% else %>
-
-<%= render partial: "showbis" %>
-
 <% end %>
 <%= render partial: "/events/showcal", locals: { bid: @business.id }%>

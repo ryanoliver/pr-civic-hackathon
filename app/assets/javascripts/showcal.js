@@ -2,7 +2,7 @@ $(function(){
     var BID =  parseInt($('#bid').html());
 
     var Event = Backbone.Model.extend({
-       defaults:{
+     defaults:{
         "bid": BID
     }
 });
@@ -49,7 +49,7 @@ $(function(){
             });
         },
         addAll: function() {
-        //Only display events with the same bisID
+        // Only display events with the same bisID
         col = this.collection.search({bisId: BID});
         this.$el.fullCalendar('addEventSource', col.toJSON());
     },

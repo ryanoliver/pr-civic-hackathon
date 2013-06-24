@@ -1,5 +1,6 @@
 $(function(){
     var BID =  parseInt($('#bid').html());
+    var owner = $('#owner').data('owner');
 
     var Event = Backbone.Model.extend({
      defaults:{
@@ -49,23 +50,23 @@ $(function(){
             });
         },
         addAll: function() {
-        // Only display events with the same bisID
-        col = this.collection.search({bisId: BID});
-        this.$el.fullCalendar('addEventSource', col.toJSON());
-    },
-    addOne: function(event) {
-        this.$el.fullCalendar('renderEvent', event.toJSON(), true);
-    },
-    select: function(startDate, endDate) {
-        this.eventView.collection = this.collection;
-        this.eventView.model = new Event({start: startDate, end: endDate });
-        this.eventView.render();
-    },
-    eventClick: function(fcEvent) {
-        this.eventView.model = this.collection.get(fcEvent.id);
-        this.eventView.render();
-    },
-    change: function(event) {
+            // Only display events with the same bisID
+            col = this.collection.search({bisId: BID});
+            this.$el.fullCalendar('addEventSource', col.toJSON());
+        },
+        addOne: function(event) {
+            this.$el.fullCalendar('renderEvent', event.toJSON(), true);
+        },
+        select: function(startDate, endDate) {
+            this.eventView.collection = this.collection;
+            this.eventView.model = new Event({start: startDate, end: endDate });
+            this.eventView.render();
+        },
+        eventClick: function(fcEvent) {
+            this.eventView.model = this.collection.get(fcEvent.id);
+            this.eventView.render();
+        },
+        change: function(event) {
             // Look up the underlying event in the calendar and update its details from the model
             var fcEvent = this.$el.fullCalendar('clientEvents', event.get('id'))[0];
             fcEvent.title = event.get('title');
@@ -80,49 +81,49 @@ $(function(){
         }
     });
 
-var EventView = Backbone.View.extend({
-    el: $('#eventDialog'),
-    initialize: function() {
-        _.bindAll(this);
-    },
-    render: function() {
-        var buttons = {'Ok': this.save};
-        if (!this.model.isNew()) {
-            _.extend(buttons, {'Delete': this.destroy});
+    var EventView = Backbone.View.extend({
+        el: $('#eventDialog'),
+        initialize: function() {
+            _.bindAll(this);
+        },
+        render: function() {
+            var buttons = {'Ok': this.save};
+            if (!this.model.isNew()) {
+                _.extend(buttons, {'Delete': this.destroy});
+            }
+            _.extend(buttons, {'Cancel': this.close});
+
+            this.$el.dialog({
+                modal: true,
+                title: (this.model.isNew() ? 'New' : 'Edit') + ' Event',
+                buttons: buttons,
+                open: this.open
+            });
+
+            return this;
+        },
+        open: function() {
+            this.$('#title').val(this.model.get('title'));
+            this.$('#color').val(this.model.get('color'));
+            this.$('#start').val(this.model.get('start'));
+            this.$('#end').val(this.model.get('end'));
+        },
+        save: function() {
+            this.model.set({'title': this.$('#title').val(), 'color': this.$('#color').val()});
+
+            if (this.model.isNew()) {
+                this.collection.create(this.model, {success: this.close, wait: true});
+            } else {
+                this.model.save({}, {success: this.close});
+            }
+        },
+        close: function() {
+            this.$el.dialog('close');
+        },
+        destroy: function() {
+            this.model.destroy({success: this.close});
         }
-        _.extend(buttons, {'Cancel': this.close});
-
-        this.$el.dialog({
-            modal: true,
-            title: (this.model.isNew() ? 'New' : 'Edit') + ' Event',
-            buttons: buttons,
-            open: this.open
-        });
-
-        return this;
-    },
-    open: function() {
-        this.$('#title').val(this.model.get('title'));
-        this.$('#color').val(this.model.get('color'));
-        this.$('#start').val(this.model.get('start'));
-        this.$('#end').val(this.model.get('end'));
-    },
-    save: function() {
-        this.model.set({'title': this.$('#title').val(), 'color': this.$('#color').val()});
-
-        if (this.model.isNew()) {
-            this.collection.create(this.model, {success: this.close, wait: true});
-        } else {
-            this.model.save({}, {success: this.close});
-        }
-    },
-    close: function() {
-        this.$el.dialog('close');
-    },
-    destroy: function() {
-        this.model.destroy({success: this.close});
-    }
-});
+    });
 
 var events = new Events();
 new EventsView({el: $("#calendar"), collection: events}).render();

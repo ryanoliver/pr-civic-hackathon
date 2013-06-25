@@ -10,6 +10,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  bisId      :integer
+#  Booked     :boolean
+#  userID     :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

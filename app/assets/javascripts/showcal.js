@@ -87,26 +87,44 @@ $(function(){
             _.bindAll(this);
         },
         render: function() {
-            var buttons = {'Ok': this.save};
-            if (!this.model.isNew()) {
-                _.extend(buttons, {'Delete': this.destroy});
+            var buttons ={'Cancel': this.close};
+            if(owner === true){
+                _.extend(buttons, {'Ok': this.save});
+                if (!this.model.isNew()) {
+                    _.extend(buttons, {'Delete': this.destroy});
+                }
+                this.$el.dialog({
+                    modal: true,
+                    title: (this.model.isNew() ? 'New' : 'Edit') + ' Event',
+                    buttons: buttons,
+                    open: this.open
+                });
             }
-            _.extend(buttons, {'Cancel': this.close});
 
-            this.$el.dialog({
-                modal: true,
-                title: (this.model.isNew() ? 'New' : 'Edit') + ' Event',
-                buttons: buttons,
-                open: this.open
-            });
+            else{
+                this.$el.dialog({
+                    modal: true,
+                    title: 'Book Event?',
+                    buttons: buttons,
+                    open: this.open
+                });
+            }
 
             return this;
         },
         open: function() {
-            this.$('#title').val(this.model.get('title'));
-            this.$('#color').val(this.model.get('color'));
-            this.$('#start').val(this.model.get('start'));
-            this.$('#end').val(this.model.get('end'));
+            if(owner === true){
+                this.$('#title').val(this.model.get('title'));
+                this.$('#color').val(this.model.get('color'));
+                this.$('#start').val(this.model.get('start'));
+                this.$('#end').val(this.model.get('end'));
+            }
+            else{
+                this.$('#title').html(this.model.get('title'));
+                this.$('#color').html(this.model.get('color'));
+                this.$('#start').html(this.model.get('start'));
+                this.$('#end').html(this.model.get('end'));
+            }
         },
         save: function() {
             this.model.set({'title': this.$('#title').val(), 'color': this.$('#color').val()});

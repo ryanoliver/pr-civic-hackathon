@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611200752) do
+ActiveRecord::Schema.define(:version => 20130625041111) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "bizId"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20130611200752) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "bisId"
+    t.boolean  "Booked"
+    t.integer  "userID"
   end
 
   create_table "users", :force => true do |t|

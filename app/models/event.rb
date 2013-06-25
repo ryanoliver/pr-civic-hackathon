@@ -10,6 +10,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  bisId      :integer
+#  Booked     :boolean
+#  userID     :integer
 #
 
 class Event < ActiveRecord::Base
